@@ -1,0 +1,21 @@
+import re
+import xml.etree.ElementTree as ET
+
+file = "C:\\Users\\PQC\\Desktop\\可用数据\\standard.rdf"
+tree = ET.parse(file)
+root = tree.getroot()
+
+
+def list_child(root):
+    for child in root:
+        print("----->>>-start")
+        tag = re.sub(u"\\{.*?\}", "", child.tag)
+        print(tag,child.text)
+        for key in child.attrib:
+            print(child.attrib)
+
+        print("----->>>-end")
+        list_child(child)
+
+
+list_child(root)
